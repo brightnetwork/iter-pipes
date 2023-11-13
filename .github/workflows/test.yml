@@ -1,0 +1,45 @@
+name: test
+
+permissions:
+  contents: read
+
+on:
+  - pull_request
+  - push
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+        env:
+          POETRY_VERSION: 1.7.0
+      - name: Add Poetry to path
+        run: echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "poetry"
+      - name: Install Poetry Packages
+        run: |
+          poetry env use "3.11"
+          poetry install --only dev
+      - name: Add venv to path
+        run: echo `poetry env info --path`/bin/ >> $GITHUB_PATH
+
+      - run: ruff check --output-format github .
+      - run: ruff format --check .
+      - run: mypy --check-untyped-defs .
+      - run: pyright --warnings .
+      - run: pytest -s --cov=iter_pipes --cov-report=html
+      - uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage
+          path: htmlcov/
+      - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v3

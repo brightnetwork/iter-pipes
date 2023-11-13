@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "iter-pipes"
+version = "0.1.0"
+description = ""
+authors = ["guillaume <guillaume@p9f.fr>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.1.4"
+mypy = "^1.6.1"
+pytest = "^7.4.3"
+pyright = "^1.1.336"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+select = ["ALL"]
+ignore = ["INP001", "D", "COM", "PGH", "ANN101", "ANN204", "A003", "TRY", "EM101", "A001", "ISC001", "C901"]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"tests/**" = ["ANN201", "S101", "FA102", "PLR2004"]
+
+[tool.coverage.report]
+exclude_lines = ["@overload"]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+
+[tool.pyright]
+strict = ["iter_pipes/*.py"]
