@@ -1,4 +1,8 @@
+[![image](https://img.shields.io/pypi/v/iter-pipes.svg)](https://pypi.python.org/pypi/iter-pipes)
+[![image](https://img.shields.io/pypi/l/iter-pipes.svg)](https://pypi.python.org/pypi/iter-pipes)
+[![image](https://img.shields.io/pypi/pyversions/iter-pipes.svg)](https://pypi.python.org/pypi/iter-pipes)
 [![Code Coverage](https://img.shields.io/codecov/c/github/brightnetwork/iter-pipes)](https://app.codecov.io/gh/brightnetwork/iter-pipes)
+[![Actions status](https://github.com/brightnetwork/iter-pipes/workflows/test/badge.svg)](https://github.com/brightnetwork/iter-pipes/actions)
 
 ## `iter_pipes`: Iterable Pipes
 
