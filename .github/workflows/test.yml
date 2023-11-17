@@ -11,7 +11,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        version: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - name: Install poetry
@@ -20,14 +22,14 @@ jobs:
           POETRY_VERSION: 1.7.0
       - name: Add Poetry to path
         run: echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
-      - name: Set up Python 3.11
+      - name: Set up Python ${{ matrix.version }} 
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.version }}
           cache: "poetry"
       - name: Install Poetry Packages
         run: |
-          poetry env use "3.11"
+          poetry env use ${{ matrix.version }}
           poetry install --only dev
       - name: Add venv to path
         run: echo `poetry env info --path`/bin/ >> $GITHUB_PATH
