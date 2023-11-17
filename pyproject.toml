@@ -3,6 +3,7 @@ name = "iter-pipes"
 version = "0.1.2"
 description = "Functional pythonic pipelines for iterables."
 authors = ["brightnetwork <dev@brightnetwork.co.uk>"]
+repository = "https://github.com/brightnetwork/iter-pipes"
 readme = "README.md"
 license = "MIT"
 
