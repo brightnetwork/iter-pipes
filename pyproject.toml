@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iter-pipes"
-version = "0.1.1"
+version = "0.1.2"
 description = "Functional pythonic pipelines for iterables."
 authors = ["brightnetwork <dev@brightnetwork.co.uk>"]
 readme = "README.md"
