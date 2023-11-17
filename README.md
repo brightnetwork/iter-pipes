@@ -10,7 +10,7 @@ Functional pythonic pipelines for iterables.
 
 
 ```bash
-pip install git+https://github.com/brightnetwork/iter-pipes
+pip install iter-pipes
 ```
 
 ### Examples
