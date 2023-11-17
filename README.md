@@ -108,6 +108,8 @@ pipeline.process(range(5)).to_list()
 
 #### Branches
 
+![branch](https://github.com/brightnetwork/iter-pipes/assets/20539361/cddca673-1bf9-483b-874d-b33dfe6a88c8)
+
 ```python
 pipeline = (
     PipelineFactory[int]()
@@ -125,6 +127,9 @@ assert pipeline(range(8)).to_list() == expected
 Each "branch" order will be preserved, but there is not guarantee in term of how the two are merged.
 
 There is also `branch_off` which discard the output of the branch:
+
+![branch-off](https://github.com/brightnetwork/iter-pipes/assets/20539361/ba4950b4-3683-4f39-b614-b65120ae81f3)
+
 
 ```python
 pipeline = (
