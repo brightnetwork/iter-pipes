@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iter-pipes"
-version = "0.1.3"
+version = "0.1.4"
 description = "Functional pythonic pipelines for iterables."
 authors = ["brightnetwork <dev@brightnetwork.co.uk>"]
 repository = "https://github.com/brightnetwork/iter-pipes"
@@ -11,7 +11,7 @@ readme = "README.md"
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.1.4"
