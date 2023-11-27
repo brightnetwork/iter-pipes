@@ -29,6 +29,14 @@ raw_filter = filter
 Step = Callable[[Iterable[T]], Iterable[V]]
 
 
+def flatten() -> Step[Iterable[T], T]:
+    def f(data: Iterable[Iterable[T]]) -> Iterable[T]:
+        for x in data:
+            yield from x
+
+    return f
+
+
 def map(step: Callable[[V], W]) -> Step[V, W]:
     def f(data: Iterable[V]) -> Iterable[W]:
         for item in data:
