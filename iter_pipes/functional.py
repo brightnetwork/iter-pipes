@@ -79,13 +79,11 @@ def batch(step: Callable[[list[V]], Iterable[U]], batch_size: int) -> Step[V, U]
 
 
 @overload
-def filter(step: Callable[[V], TypeGuard[W]]) -> Step[V, W]:
-    ...
+def filter(step: Callable[[V], TypeGuard[W]]) -> Step[V, W]: ...
 
 
 @overload
-def filter(step: Callable[[V], bool]) -> Step[V, V]:
-    ...
+def filter(step: Callable[[V], bool]) -> Step[V, V]: ...
 
 
 def filter(step: Callable[[V], bool]) -> Step[V, V]:  # type: ignore
@@ -98,8 +96,7 @@ def branch(
     step2: Step[T, V],
     pick_first: Literal[True],
     max_inflight: int | None = ...,
-) -> Step[T, U]:
-    ...
+) -> Step[T, U]: ...
 
 
 @overload
@@ -108,8 +105,7 @@ def branch(
     step2: Step[T, V],
     pick_first: Literal[False] | None,
     max_inflight: int | None = ...,
-) -> Step[T, V | U]:
-    ...
+) -> Step[T, V | U]: ...
 
 
 @overload
@@ -119,20 +115,18 @@ def branch(
     step3: Step[T, W],
     pick_first: Literal[False] | None,
     max_inflight: int | None = ...,
-) -> Step[T, V | U | W]:
-    ...
+) -> Step[T, V | U | W]: ...
 
 
 @overload
-def branch(  # noqa: PLR0913
+def branch(
     step1: Step[T, U],
     step2: Step[T, V],
     step3: Step[T, W],
     step4: Step[T, X],
     pick_first: Literal[False] | None,
     max_inflight: int | None = ...,
-) -> Step[T, V | U | W | X]:
-    ...
+) -> Step[T, V | U | W | X]: ...
 
 
 @overload
@@ -140,8 +134,7 @@ def branch(
     *steps: Step[T, Any] | None,
     pick_first: Literal[False] | None,
     max_inflight: int | None = ...,
-) -> Step[T, Any]:
-    ...
+) -> Step[T, Any]: ...
 
 
 def branch(  # type: ignore

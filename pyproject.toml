@@ -14,17 +14,17 @@ license = "MIT"
 python = "^3.10"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.1.4"
-mypy = "^1.6.1"
-pytest = "^7.4.3"
-pyright = "^1.1.336"
+ruff = "^0.3.3"
+mypy = "^1.9.0"
+pytest = "^8.1.1"
+pyright = "^1.1.355"
 pytest-cov = "^4.1.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.ruff]
+[tool.ruff.lint]
 select = ["ALL"]
 ignore = ["INP001", "D", "COM", "PGH", "ANN101", "ANN204", "A003", "TRY", "EM101", "A001", "ISC001", "C901"]
 

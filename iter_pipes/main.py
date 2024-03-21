@@ -89,12 +89,10 @@ class Pipeline(Generic[T_contra, U_co]):
         return self | batch(step, batch_size)
 
     @overload
-    def filter(self, step: Callable[[U_co], TypeGuard[W]]) -> Pipeline[T_contra, W]:
-        ...
+    def filter(self, step: Callable[[U_co], TypeGuard[W]]) -> Pipeline[T_contra, W]: ...
 
     @overload
-    def filter(self, step: Callable[[U_co], bool]) -> Pipeline[T_contra, U_co]:
-        ...
+    def filter(self, step: Callable[[U_co], bool]) -> Pipeline[T_contra, U_co]: ...
 
     def filter(self, step):  # type: ignore
         return self | filter(step)  # type: ignore
@@ -110,8 +108,7 @@ class Pipeline(Generic[T_contra, U_co]):
         self,
         f1: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, W]],
         max_inflight: int = ...,
-    ) -> Pipeline[U_co, W]:
-        ...
+    ) -> Pipeline[U_co, W]: ...
 
     @overload
     def branch(
@@ -119,8 +116,7 @@ class Pipeline(Generic[T_contra, U_co]):
         f1: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, V]],
         f2: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, W]],
         max_inflight: int = ...,
-    ) -> Pipeline[U_co, W | V]:
-        ...
+    ) -> Pipeline[U_co, W | V]: ...
 
     @overload
     def branch(
@@ -129,19 +125,17 @@ class Pipeline(Generic[T_contra, U_co]):
         f2: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, W]],
         f3: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, X]],
         max_inflight: int = ...,
-    ) -> Pipeline[U_co, W | V | X]:
-        ...
+    ) -> Pipeline[U_co, W | V | X]: ...
 
     @overload
-    def branch(  # noqa W291
+    def branch(  # W291
         self,
         f1: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, V]],
         f2: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, W]],
         f3: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, X]],
         f4: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, Y]],
         max_inflight: int = ...,
-    ) -> Pipeline[U_co, W | V | X | Y]:
-        ...
+    ) -> Pipeline[U_co, W | V | X | Y]: ...
 
     def branch(  # type: ignore
         self,
