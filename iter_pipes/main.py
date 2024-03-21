@@ -51,7 +51,7 @@ class IterableWrapper(Generic[T_contra]):
         return iter(self._iterable)
 
     def consume(self) -> None:
-        deque(self._iterable)
+        deque(self._iterable, maxlen=0)
 
     def to_list(self) -> list[T_contra]:
         return list(self._iterable)
