@@ -21,6 +21,8 @@ V = TypeVar("V")
 W = TypeVar("W")
 X = TypeVar("X")
 Y = TypeVar("Y")
+Z = TypeVar("Z")
+A = TypeVar("A")
 
 __all__ = ["Pipeline", "PipelineFactory"]
 
@@ -136,6 +138,29 @@ class Pipeline(Generic[T_contra, U_co]):
         f4: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, Y]],
         max_inflight: int = ...,
     ) -> Pipeline[U_co, W | V | X | Y]: ...
+
+    @overload
+    def branch(  # W291
+        self,
+        f1: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, V]],
+        f2: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, W]],
+        f3: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, X]],
+        f4: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, Y]],
+        f5: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, Z]],
+        max_inflight: int = ...,
+    ) -> Pipeline[U_co, W | V | X | Y | Z]: ...
+
+    @overload
+    def branch(  # W291
+        self,
+        f1: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, V]],
+        f2: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, W]],
+        f3: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, X]],
+        f4: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, Y]],
+        f5: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, Z]],
+        f6: Callable[[Pipeline[U_co, U_co]], Pipeline[U_co, A]],
+        max_inflight: int = ...,
+    ) -> Pipeline[U_co, W | V | X | Y | Z | A]: ...
 
     def branch(  # type: ignore
         self,

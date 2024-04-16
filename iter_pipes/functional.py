@@ -21,6 +21,8 @@ V = TypeVar("V")
 U = TypeVar("U")
 W = TypeVar("W")
 X = TypeVar("X")
+Y = TypeVar("Y")
+Z = TypeVar("Z")
 
 
 raw_filter = filter
@@ -127,6 +129,31 @@ def branch(
     pick_first: Literal[False] | None,
     max_inflight: int | None = ...,
 ) -> Step[T, V | U | W | X]: ...
+
+
+@overload
+def branch(
+    step1: Step[T, U],
+    step2: Step[T, V],
+    step3: Step[T, W],
+    step4: Step[T, X],
+    step5: Step[T, Y],
+    pick_first: Literal[False] | None,
+    max_inflight: int | None = ...,
+) -> Step[T, V | U | W | X | Y]: ...
+
+
+@overload
+def branch(
+    step1: Step[T, U],
+    step2: Step[T, V],
+    step3: Step[T, W],
+    step4: Step[T, X],
+    step5: Step[T, Y],
+    step6: Step[T, Z],
+    pick_first: Literal[False] | None,
+    max_inflight: int | None = ...,
+) -> Step[T, V | U | W | X | Y | Z]: ...
 
 
 @overload
