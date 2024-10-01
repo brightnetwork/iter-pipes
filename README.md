@@ -15,6 +15,30 @@ pip install iter-pipes
 
 ### Examples
 
+#### pipe:
+
+```python
+from collections.abc import Iterable
+
+from iter_pipes import PipelineFactory
+
+
+def process_a(items: Iterable[int]):
+    for item in items:
+        yield item * 2 + 1
+
+
+def process_b(items: Iterable[int]):
+    for item in items:
+        yield item
+        yield -item
+
+
+pipeline = PipelineFactory[int]().pipe(process_a).pipe(process_b)
+
+assert pipeline(range(3)).to_list() == [1, -1, 3, -3, 5, -5]
+```
+
 #### map / filter:
 
 ```python
